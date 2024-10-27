@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { UploadModule } from './upload/upload.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { createDatabaseConfig } from './config/database.config';
+import { AccountModule } from './account/account.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { createDatabaseConfig } from './config/database.config';
       serveRoot: '/public', // 静态文件访问前缀
     }),
     UploadModule,
-    UserModule,
+    AccountModule,
   ],
   controllers: [],
   providers: [],
