@@ -9,4 +9,5 @@ export class LoginController {
   login(@Body() loginDto: LoginDto) {
     return this.loginService.login(loginDto);
   }
+  // 获取公钥
 }

@@ -3,9 +3,12 @@ import { LoginController } from './login.controller';
 import { LoginService } from './login.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Account } from '../entities/account.entity';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Account]),
     ConfigModule, // 确保加载.env配置
     JwtModule.registerAsync({
       imports: [ConfigModule],

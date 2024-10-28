@@ -4,6 +4,7 @@ import { Account } from '../entities/account.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as dayjs from 'dayjs';
+import * as SHA256 from 'crypto-js/sha256';
 
 @Injectable()
 export class AccountService {
@@ -22,7 +23,8 @@ export class AccountService {
     }
     // 创建账号实体
     const newAccount = this.accountRepository.create({
-      ...data,
+      username: data.username,
+      password: SHA256(data.password).toString(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     });
     try {

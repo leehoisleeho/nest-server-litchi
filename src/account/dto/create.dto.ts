@@ -9,6 +9,6 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty({ message: '密码不能为空' })
-  @MinLength(6, { message: '密码长度至少为6位' })
+  @MinLength(5, { message: '密码长度至少为5位' })
   password: string;
 }
