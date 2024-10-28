@@ -4,6 +4,7 @@ import { IsString, IsNotEmpty, MinLength } from 'class-validator';
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty({ message: '用户名不能为空' })
+  @MinLength(5, { message: '用户名长度至少为5位' })
   username: string;
 
   @IsString()

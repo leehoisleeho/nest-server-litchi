@@ -13,11 +13,18 @@ export class AccountService {
 
   // 创建账号
   async create(data: CreateUserDto) {
+    // 查看是否有重复账号
+    const existAccount = await this.accountRepository.findOne({
+      where: { username: data.username },
+    });
+    if (existAccount) {
+      throw new HttpException('账号已存在', HttpStatus.BAD_REQUEST);
+    }
+    // 创建账号实体
     const newAccount = this.accountRepository.create({
       ...data,
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     });
-
     try {
       await this.accountRepository.save(newAccount);
       return '账号创建成功';

@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { createDatabaseConfig } from './config/database.config';
 import { AccountModule } from './account/account.module';
+import { GlobalExceptionFilter } from './filters/global-exception.filter';
+import { TransformInterceptor } from './interceptors/transform.interceptor';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -30,6 +33,17 @@ import { AccountModule } from './account/account.module';
     AccountModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    // 全局异常过滤器
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
+    },
+    // 全局响应拦截器
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
+    },
+  ],
 })
 export class AppModule {}
