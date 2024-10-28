@@ -2,34 +2,27 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-## Description
-1. Nest的一些功能模块，配置完容易忘，每写一个模块，就记录一下。
-2. 也是一种学习记录。
+## Tips
 
-## Installation
-用bun构建项目
+请在/src下创建文件.env
 
-```bash
-$ bun install
 ```
+# 启动端口
+PORT=8090
 
-## Running the app
-
-```bash
-# development
-$ bun run start
-
-# watch mode
-$ bun run start:dev
-
-# production mode
-$ bun run start:prod
+# 数据库配置
+DB_HOST="127.0.0.1"
+DB_PORT=3306
+DB_DATABASE="test"
+DB_USERNAME="root"
+DB_PASSWORD="lh@19870929"
 ```
 
 ## 模块
+
 1. 连接mysql
 2. 配置.env
 3. 全局请求拦截器
-4. jwt生成和验证
- 
-
+4. 全局响应拦截器
+5. 图片上传/删除
+6. jwt生成和验证
