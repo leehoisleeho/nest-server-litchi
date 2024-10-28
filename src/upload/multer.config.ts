@@ -6,7 +6,7 @@ import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer
 import * as path from 'path';
 import { ensureDirectoryExistence } from '../utils';
 
-const imgPath = path.join(__dirname, '../../public/imgs');
+const imgPath = path.join(__dirname, '../../public/images');
 ensureDirectoryExistence(imgPath);
 export const multerOptions: MulterOptions = {
   storage: diskStorage({
