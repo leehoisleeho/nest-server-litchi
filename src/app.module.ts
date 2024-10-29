@@ -12,6 +12,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { LoginModule } from './login/login.module';
 import { JwtMiddleware } from 'src/middleware/jwt.middleware';
 import { JwtModule } from '@nestjs/jwt';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { JwtModule } from '@nestjs/jwt';
     UploadModule,
     AccountModule,
     LoginModule,
+    MenuModule,
   ],
   controllers: [],
   providers: [
