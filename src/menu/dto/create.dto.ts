@@ -7,18 +7,22 @@ export class CreateDto {
   menu_name: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'key不能为空' })
-  key: string;
+  @IsNotEmpty({ message: 'menu_path不能为空' })
+  file_path: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'icon_name不能为空' })
-  icon_name: string;
+  @IsNotEmpty({ message: 'router_path不能为空' })
+  router_path: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'isShow不能为空' })
+  isShow: string;
+
+  @IsNumber()
+  @IsNotEmpty({ message: 'parent不能为空' })
+  parentId: number;
 
   @IsNumber()
   @IsNotEmpty({ message: 'sort不能为空' })
   sort: number;
-
-  @IsString()
-  @IsNotEmpty({ message: 'icon_name不能为空' })
-  isShow: string;
 }

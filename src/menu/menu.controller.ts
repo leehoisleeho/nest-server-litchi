@@ -2,10 +2,10 @@ import {
   Body,
   Controller,
   Get,
-  Post,
-  Delete,
   Param,
+  Post,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { CreateDto } from './dto/create.dto';
@@ -14,27 +14,24 @@ import { UpdateDto } from './dto/update.dto';
 @Controller('menu')
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
-
-  @Post('create')
-  create(@Body() data: CreateDto) {
-    return this.menuService.create(data);
-  }
-
-  @Delete('/:id')
-  delete(@Param('id') id: number) {
-    return this.menuService.delete(id);
-  }
-
-  @Put('/:id')
-  update(@Param('id') id: number, @Body() data: UpdateDto) {
-    return this.menuService.update(id, data);
-  }
   @Get('all')
-  getAllMenu() {
-    return this.menuService.getAllMenu();
+  findAll() {
+    return this.menuService.findAll();
   }
-  @Get('/:id')
-  getOne(@Param('id') id: number) {
-    return this.menuService.getOneMenu(id);
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.menuService.findOne(id);
+  }
+  @Post()
+  createMenu(@Body() createDto: CreateDto) {
+    return this.menuService.create(createDto);
+  }
+  @Put(':id')
+  updateMenu(@Param('id') id: number, @Body() updateDto: UpdateDto) {
+    return this.menuService.update(id, updateDto);
+  }
+  @Delete(':id')
+  deleteMenu(@Param('id') id: number) {
+    return this.menuService.delete(id);
   }
 }

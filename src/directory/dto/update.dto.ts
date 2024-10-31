@@ -9,14 +9,14 @@ export class UpdateDto {
   key: string;
 
   @IsString()
-  router_path: string;
+  icon_name: string;
+
+  @IsNumber()
+  sort: number;
 
   @IsString()
   isShow: string;
 
-  @IsNumber()
-  parentId: number;
-
-  @IsNumber()
-  sort: number;
+  @IsString()
+  router_path: string;
 }

@@ -12,6 +12,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { LoginModule } from './login/login.module';
 import { JwtMiddleware } from 'src/middleware/jwt.middleware';
 import { JwtModule } from '@nestjs/jwt';
+import { DirectoryModule } from './directory/directory.module';
 import { MenuModule } from './menu/menu.module';
 
 @Module({
@@ -45,6 +46,7 @@ import { MenuModule } from './menu/menu.module';
     UploadModule,
     AccountModule,
     LoginModule,
+    DirectoryModule,
     MenuModule,
   ],
   controllers: [],
@@ -67,6 +69,7 @@ export class AppModule {
     consumer
       .apply(JwtMiddleware)
       .exclude({ path: 'login', method: RequestMethod.ALL }) // 排除 '/login'
+      .exclude({ path: 'directory/all', method: RequestMethod.GET }) // 排除 动态侧边栏请求
       .forRoutes('*'); // 应用于除上述路由外的所有路由
   }
 }
