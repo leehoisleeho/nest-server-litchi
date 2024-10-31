@@ -6,7 +6,7 @@ export class UpdateDto {
   menu_name: string;
 
   @IsString()
-  key: string;
+  file_path: string;
 
   @IsString()
   router_path: string;

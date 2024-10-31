@@ -7,7 +7,7 @@ export class CreateDto {
   menu_name: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'menu_path不能为空' })
+  @IsNotEmpty({ message: 'file_path不能为空' })
   file_path: string;
 
   @IsString()

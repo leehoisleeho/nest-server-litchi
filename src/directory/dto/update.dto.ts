@@ -3,10 +3,10 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class UpdateDto {
   @IsString()
-  menu_name: string;
+  directory_name: string;
 
   @IsString()
-  key: string;
+  file_path: string;
 
   @IsString()
   icon_name: string;
@@ -19,4 +19,7 @@ export class UpdateDto {
 
   @IsString()
   router_path: string;
+
+  @IsString()
+  isMenu: string;
 }
