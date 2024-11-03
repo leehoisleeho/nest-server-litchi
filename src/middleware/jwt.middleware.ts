@@ -27,7 +27,7 @@ export class JwtMiddleware implements NestMiddleware {
       this.jwtService.verify(token, { secret });
       next();
     } catch (error) {
-      throw new UnauthorizedException('token已过期');
+      throw new UnauthorizedException('token无效');
     }
   }
 }

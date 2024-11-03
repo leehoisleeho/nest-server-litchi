@@ -11,6 +11,9 @@ export class Account {
   @Column()
   password: string;
 
+  @Column({ length: 255 })
+  permission: string;
+
   @Column()
   createdAt: string;
 }

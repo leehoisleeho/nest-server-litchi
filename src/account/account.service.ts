@@ -26,6 +26,7 @@ export class AccountService {
       username: data.username,
       password: SHA256(data.password).toString(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      permission: data.permission,
     });
     try {
       await this.accountRepository.save(newAccount);

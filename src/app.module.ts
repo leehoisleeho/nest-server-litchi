@@ -14,6 +14,7 @@ import { JwtMiddleware } from 'src/middleware/jwt.middleware';
 import { JwtModule } from '@nestjs/jwt';
 import { DirectoryModule } from './directory/directory.module';
 import { MenuModule } from './menu/menu.module';
+import { InitModule } from './init/init.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { MenuModule } from './menu/menu.module';
     LoginModule,
     DirectoryModule,
     MenuModule,
+    InitModule,
   ],
   controllers: [],
   providers: [
@@ -68,8 +70,10 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(JwtMiddleware)
-      .exclude({ path: 'login', method: RequestMethod.ALL }) // 排除 '/login'
-      .exclude({ path: 'directory/all', method: RequestMethod.GET }) // 排除 动态侧边栏请求
+      .exclude({ path: 'login', method: RequestMethod.ALL }) // 排除登录请求
+      .exclude({ path: 'directory/all', method: RequestMethod.GET }) // 排除动态侧边栏请求，路由表里要加载动态菜单
+      .exclude({ path: 'account/create', method: RequestMethod.ALL }) // 排除动态菜单请求
+      .exclude({ path: 'init', method: RequestMethod.ALL }) // 排除动态菜单请求
       .forRoutes('*'); // 应用于除上述路由外的所有路由
   }
 }
