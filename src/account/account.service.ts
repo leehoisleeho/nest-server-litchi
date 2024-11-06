@@ -15,7 +15,6 @@ export class AccountService {
 
   // 创建账号
   async create(data: CreateUserDto) {
-    console.log;
     // 查看是否有重复账号
     const existAccount = await this.accountRepository.findOne({
       where: { username: data.username },
@@ -93,7 +92,9 @@ export class AccountService {
         throw new HttpException('账号不存在', HttpStatus.BAD_REQUEST);
       }
       await this.accountRepository.update(id, {
-        ...data,
+        username: data.username,
+        password: SHA256(data.password).toString(),
+        permissionsId: data.permissionsId,
         updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       });
     } catch (error) {
