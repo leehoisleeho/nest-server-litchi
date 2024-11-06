@@ -15,6 +15,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { DirectoryModule } from './directory/directory.module';
 import { MenuModule } from './menu/menu.module';
 import { InitModule } from './init/init.module';
+import { PermissionsModule } from './permissions/permissions.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { InitModule } from './init/init.module';
     DirectoryModule,
     MenuModule,
     InitModule,
+    PermissionsModule,
   ],
   controllers: [],
   providers: [
