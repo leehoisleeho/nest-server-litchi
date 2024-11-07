@@ -59,7 +59,7 @@ export class InitService {
       router_path: '/menu',
       file_path: '/basic/menu',
       sort: 3,
-      isShow: '1',
+      isShow: '0',
       isMenu: '1',
     },
     {
@@ -67,7 +67,7 @@ export class InitService {
       router_path: '/account',
       file_path: '/basic/account',
       sort: 1,
-      isShow: '1',
+      isShow: '0',
       isMenu: '1',
     },
     {
@@ -75,7 +75,15 @@ export class InitService {
       router_path: '/permissions',
       file_path: '/basic/permissions',
       sort: 2,
-      isShow: '1',
+      isShow: '0',
+      isMenu: '1',
+    },
+    {
+      menu_name: '系统设置',
+      router_path: '/system',
+      file_path: '/basic/system',
+      sort: 4,
+      isShow: '0',
       isMenu: '1',
     },
   ];

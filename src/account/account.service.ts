@@ -91,12 +91,21 @@ export class AccountService {
       if (!account) {
         throw new HttpException('账号不存在', HttpStatus.BAD_REQUEST);
       }
-      await this.accountRepository.update(id, {
-        username: data.username,
-        password: SHA256(data.password).toString(),
-        permissionsId: data.permissionsId,
-        updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-      });
+      if (data.password !== account.password) {
+        await this.accountRepository.update(id, {
+          username: data.username,
+          password: SHA256(data.password).toString(),
+          permissionsId: data.permissionsId,
+          updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        });
+      } else {
+        await this.accountRepository.update(id, {
+          username: data.username,
+          password: account.password,
+          permissionsId: data.permissionsId,
+          updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        });
+      }
     } catch (error) {
       throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }

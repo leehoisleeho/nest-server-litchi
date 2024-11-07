@@ -7,7 +7,6 @@ export class updateDto {
   username: string;
 
   @IsString()
-  @MinLength(5, { message: '密码长度至少为5位' })
   password: string;
 
   @IsString()
