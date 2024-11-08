@@ -1,7 +1,5 @@
 import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { UploadModule } from './upload/upload.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { createDatabaseConfig } from './config/database.config';
@@ -16,6 +14,7 @@ import { DirectoryModule } from './directory/directory.module';
 import { MenuModule } from './menu/menu.module';
 import { InitModule } from './init/init.module';
 import { PermissionsModule } from './permissions/permissions.module';
+import { SystemModule } from './system/system.module';
 
 @Module({
   imports: [
@@ -31,11 +30,7 @@ import { PermissionsModule } from './permissions/permissions.module';
       useFactory: async (configService: ConfigService) =>
         createDatabaseConfig(configService),
     }),
-    // 配置静态文件目录
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // 配置静态文件目录
-      serveRoot: '/public', // 静态文件访问前缀
-    }),
+
     // JwtModule 配置，使用 ConfigService 获取密钥
     JwtModule.registerAsync({
       imports: [ConfigModule],
@@ -52,6 +47,7 @@ import { PermissionsModule } from './permissions/permissions.module';
     MenuModule,
     InitModule,
     PermissionsModule,
+    SystemModule,
   ],
   controllers: [],
   providers: [
@@ -76,6 +72,7 @@ export class AppModule {
       .exclude({ path: 'directory/all', method: RequestMethod.GET }) // 排除动态侧边栏请求，路由表里要加载动态菜单
       .exclude({ path: 'account/create', method: RequestMethod.ALL }) // 排除动态菜单请求
       .exclude({ path: 'init', method: RequestMethod.ALL }) // 排除动态菜单请求
+      .exclude({ path: 'system', method: RequestMethod.ALL }) // 排除系统信息接口
       .forRoutes('*'); // 应用于除上述路由外的所有路由
   }
 }

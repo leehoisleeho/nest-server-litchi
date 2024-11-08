@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In, DataSource } from 'typeorm';
 import * as dayjs from 'dayjs';
 import * as SHA256 from 'crypto-js/sha256';
+import { SystemInfo } from '../entities/systemInfo.entity';
 
 // 定义接口
 interface DirectoryConfig {
@@ -18,16 +19,16 @@ interface DirectoryConfig {
   isMenu: '0' | '1';
 }
 
-interface MenuConfig {
-  menu_name: string;
-  router_path: string;
-  file_path: string;
-  icon_name?: string;
-  sort: number;
-  isShow: '0' | '1';
-  isMenu: '0' | '1';
-  parentId: number;
-}
+// interface MenuConfig {
+//   menu_name: string;
+//   router_path: string;
+//   file_path: string;
+//   icon_name?: string;
+//   sort: number;
+//   isShow: '0' | '1';
+//   isMenu: '0' | '1';
+//   parentId: number;
+// }
 
 @Injectable()
 export class InitService {
@@ -80,7 +81,7 @@ export class InitService {
     },
     {
       menu_name: '系统设置',
-      router_path: '/system',
+      router_path: '/system_set',
       file_path: '/basic/system',
       sort: 4,
       isShow: '0',
@@ -88,9 +89,17 @@ export class InitService {
     },
   ];
 
+  private readonly DEFAULT_SYSTEM_INFO = {
+    system_name: 'vue-admin-litchi',
+    system_version: '0.0.1',
+    system_logo_url: '',
+    updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+  };
   constructor(
     @InjectRepository(Account)
     private readonly accountRepository: Repository<Account>,
+    @InjectRepository(SystemInfo)
+    private readonly systemInfoRepository: Repository<SystemInfo>,
     @InjectRepository(DirectoryEntity)
     private readonly directoryRepository: Repository<DirectoryEntity>,
     @InjectRepository(MenuEntity)
@@ -107,6 +116,7 @@ export class InitService {
       await this.initAccount();
       await this.initDirectory();
       await this.initMenu();
+      await this.initSystemInfo();
 
       await queryRunner.commitTransaction();
       return {
@@ -127,7 +137,21 @@ export class InitService {
       await queryRunner.release();
     }
   }
+  // 添加系统信息初始化方法
+  private async initSystemInfo() {
+    const systemInfo = await this.systemInfoRepository.findOne({
+      where: { id: 1 }, // 假设只有一条系统信息记录
+    });
 
+    if (systemInfo) {
+      return;
+    }
+
+    const newSystemInfo = this.systemInfoRepository.create(
+      this.DEFAULT_SYSTEM_INFO,
+    );
+    await this.systemInfoRepository.save(newSystemInfo);
+  }
   private async initAccount() {
     const account = await this.accountRepository.findOne({
       where: {

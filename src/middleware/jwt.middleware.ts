@@ -16,7 +16,6 @@ export class JwtMiddleware implements NestMiddleware {
 
   use(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
-
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw new UnauthorizedException('请在请求头中携带token');
     }
