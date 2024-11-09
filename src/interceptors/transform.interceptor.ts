@@ -25,8 +25,8 @@ export class TransformInterceptor<T>
       map((data) => ({
         code: 0,
         message: 'ok',
-        data,
         timestamp: new Date().toISOString(),
+        data,
       })),
     );
   }

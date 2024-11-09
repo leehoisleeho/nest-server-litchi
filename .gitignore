@@ -13,9 +13,7 @@ yarn-error.log*
 lerna-debug.log*
 
 # 图片文件
-/public/imgs/*.jpg
-/public/imgs/*.png
-/public/imgs/*.jpeg
+/public
 
 # OS
 .DS_Store
