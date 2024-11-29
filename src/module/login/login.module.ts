@@ -4,7 +4,7 @@ import { LoginService } from './login.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Account } from '../entities/account.entity';
+import { Account } from '../../entities/account.entity';
 
 @Module({
   imports: [

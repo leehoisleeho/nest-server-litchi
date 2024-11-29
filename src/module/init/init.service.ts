@@ -1,12 +1,12 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { Account } from '../entities/account.entity';
-import { DirectoryEntity } from '../entities/directory.entity';
-import { MenuEntity } from '../entities/menu.entity';
+import { Account } from '../../entities/account.entity';
+import { DirectoryEntity } from '../../entities/directory.entity';
+import { MenuEntity } from '../../entities/menu.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In, DataSource } from 'typeorm';
 import * as dayjs from 'dayjs';
 import * as SHA256 from 'crypto-js/sha256';
-import { SystemInfo } from '../entities/systemInfo.entity';
+import { SystemInfo } from '../../entities/systemInfo.entity';
 
 // 定义接口
 interface DirectoryConfig {

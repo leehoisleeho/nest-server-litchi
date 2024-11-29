@@ -1,8 +1,8 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { MenuEntity } from '../entities/menu.entity';
-import { Permissions } from '../entities/permissions.entity';
+import { MenuEntity } from '../../entities/menu.entity';
+import { Permissions } from '../../entities/permissions.entity';
 import { CreateDto } from './dto/create.dto';
 import { UpdateDto } from './dto/update.dto';
 

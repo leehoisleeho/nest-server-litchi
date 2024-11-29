@@ -1,20 +1,20 @@
 import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
-import { UploadModule } from './upload/upload.module';
+import { UploadModule } from './module/upload/upload.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { createDatabaseConfig } from './config/database.config';
-import { AccountModule } from './account/account.module';
-import { GlobalExceptionFilter } from './filters/global-exception.filter';
-import { TransformInterceptor } from './interceptors/transform.interceptor';
+import { AccountModule } from './module/account/account.module';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { LoginModule } from './login/login.module';
-import { JwtMiddleware } from 'src/middleware/jwt.middleware';
+import { LoginModule } from './module//login/login.module';
+import { JwtMiddleware } from 'src/common/middleware/jwt.middleware';
 import { JwtModule } from '@nestjs/jwt';
-import { DirectoryModule } from './directory/directory.module';
-import { MenuModule } from './menu/menu.module';
-import { InitModule } from './init/init.module';
-import { PermissionsModule } from './permissions/permissions.module';
-import { SystemModule } from './system/system.module';
+import { DirectoryModule } from './module//directory/directory.module';
+import { MenuModule } from './module//menu/menu.module';
+import { InitModule } from './module//init/init.module';
+import { PermissionsModule } from './module/permissions/permissions.module';
+import { SystemModule } from './module/system/system.module';
 
 @Module({
   imports: [

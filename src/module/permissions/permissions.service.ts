@@ -3,7 +3,7 @@ import { CreateDto } from './dto/create.dto';
 import * as dayjs from 'dayjs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Permissions } from '../entities/permissions.entity';
+import { Permissions } from '../../entities/permissions.entity';
 
 @Injectable()
 export class PermissionsService {

@@ -1,7 +1,7 @@
 import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SystemInfo } from '../entities/systemInfo.entity';
+import { SystemInfo } from '../../entities/systemInfo.entity';
 import * as dayjs from 'dayjs';
 import { UpdateDto } from './dto/update.dto';
 

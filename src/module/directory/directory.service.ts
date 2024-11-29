@@ -2,10 +2,10 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateDto } from './dto/create.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { DirectoryEntity } from '../entities/directory.entity';
+import { DirectoryEntity } from '../../entities/directory.entity';
 import * as dayjs from 'dayjs';
 import { UpdateDto } from './dto/update.dto';
-import { Permissions } from '../entities/permissions.entity';
+import { Permissions } from '../../entities/permissions.entity';
 
 @Injectable()
 export class DirectoryService {
